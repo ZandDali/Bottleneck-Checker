@@ -42,7 +42,7 @@ def add_process_step():
     print(f" Step '{step}' with {time} mins recorded.")
 
 # ------------------------------
-# Finding if there are any bottlenecks
+# Calculating and finding if there are any bottlenecks
 # ------------------------------
 def find_bottlenecks():
     steps = load_steps()
