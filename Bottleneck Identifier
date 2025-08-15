@@ -71,9 +71,9 @@ def find_bottlenecks():
 # ------------------------------
 if __name__ == "__main__":
     while True:
-        print("\n1️⃣ Add process step")
-        print("2️⃣ View bottlenecks")
-        print("3️⃣ Exit")
+        print("\n1. Add process step")
+        print("2. View bottlenecks")
+        print("3. Exit")
         choice = input("Choose an option: ").strip()
 
         if choice == "1":
