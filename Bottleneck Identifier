@@ -1,7 +1,7 @@
 """
 Simple Workflow Bottleneck Identifier
 Author: Zandile Dalasile
-Purpose: Identify slowest step(s) in a process for improvement
+Purpose: Identify slowest step or spteps in a process for improvement
 """
 
 import json
