@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 DATA_FILE = "process_steps.json"
 
-# Load & Save Steps
+# Loading & Saving Steps
 
 def load_steps():
     """Return list of steps from JSON file or empty list if none."""
