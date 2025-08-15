@@ -1,5 +1,5 @@
 """
-Simple Workflow Bottleneck Identifier (JSON version)
+Simple Workflow Bottleneck Identifier
 Author: Zandile Dalasile
 Purpose: Identify slowest step(s) in a process for improvement
 """
