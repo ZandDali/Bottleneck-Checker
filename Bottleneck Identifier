@@ -63,6 +63,7 @@ def find_bottlenecks():
     plt.xlabel("Process Steps")
     plt.ylabel("Total Time (minutes)")
     plt.title("Workflow Step Times")
+    plt.xticks(rotation=45)
     plt.show()
 
 # ------------------------------
