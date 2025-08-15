@@ -1,0 +1,85 @@
+"""
+Simple Workflow Bottleneck Identifier (JSON version)
+Author: Zandile Dalasile
+Purpose: Identify slowest step(s) in a process for improvement
+"""
+
+import json
+import os
+from collections import defaultdict
+import matplotlib.pyplot as plt
+
+DATA_FILE = "process_steps.json"
+
+# Load & Save Steps
+
+def load_steps():
+    """Return list of steps from JSON file or empty list if none."""
+    if os.path.isfile(DATA_FILE):
+        with open(DATA_FILE, "r") as f:
+            return json.load(f)
+    return []
+
+def save_steps(steps):
+    """Save list of steps to JSON file."""
+    with open(DATA_FILE, "w") as f:
+        json.dump(steps, f, indent=4)
+
+# ------------------------------
+# Adding the process step
+# ------------------------------
+def add_process_step():
+    steps = load_steps()
+    step = input("Enter step name: ").strip()
+    try:
+        time = float(input("Enter completion time (minutes): "))
+    except ValueError:
+        print(" Invalid input. Enter a number.")
+        return
+
+    steps.append({"step": step, "time": time})
+    save_steps(steps)
+    print(f" Step '{step}' with {time} mins recorded.")
+
+# ------------------------------
+# Finding if there are any bottlenecks
+# ------------------------------
+def find_bottlenecks():
+    steps = load_steps()
+    if not steps:
+        print(" No data found.")
+        return
+
+    totals = defaultdict(float)
+    for s in steps:
+        totals[s["step"]] += s["time"]
+
+    max_time = max(totals.values())
+    bottlenecks = [s for s, t in totals.items() if t == max_time]
+
+    print(f"\n Bottleneck(s): {', '.join(bottlenecks)} ({max_time} mins)")
+
+    plt.bar(totals.keys(), totals.values())
+    plt.xlabel("Process Steps")
+    plt.ylabel("Total Time (minutes)")
+    plt.title("Workflow Step Times")
+    plt.show()
+
+# ------------------------------
+# Menu
+# ------------------------------
+if __name__ == "__main__":
+    while True:
+        print("\n1️⃣ Add process step")
+        print("2️⃣ View bottlenecks")
+        print("3️⃣ Exit")
+        choice = input("Choose an option: ").strip()
+
+        if choice == "1":
+            add_process_step()
+        elif choice == "2":
+            find_bottlenecks()
+        elif choice == "3":
+            break
+        else:
+            print(" Invalid choice.")
